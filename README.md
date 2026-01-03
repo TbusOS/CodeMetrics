@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/CodeMetrics.svg?style=social&label=Star)](https://github.com/YOUR_USERNAME/CodeMetrics)
+[![GitHub stars](https://img.shields.io/github/stars/TbusOS/CodeMetrics.svg?style=social&label=Star)](https://github.com/TbusOS/CodeMetrics)
 
 **一个功能丰富的代码度量分析工具**
 
@@ -34,7 +34,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/CodeMetrics.git
+git clone https://github.com/TbusOS/CodeMetrics.git
 cd CodeMetrics
 
 # 一键安装
@@ -113,7 +113,7 @@ MIT License - 详见 [LICENSE](LICENSE) 文件。
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/CodeMetrics.git
+git clone https://github.com/TbusOS/CodeMetrics.git
 cd CodeMetrics
 
 # One-click installation
@@ -177,6 +177,6 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 **Made with ❤️ for developers worldwide**
 
-[⭐ Star this project](https://github.com/YOUR_USERNAME/CodeMetrics) if you find it helpful!
+[⭐ Star this project](https://github.com/TbusOS/CodeMetrics) if you find it helpful!
 
 </div>

@@ -48,8 +48,8 @@
 ```bash
 cd /home/zhangbh/cursor-tools/CodeMetrics
 
-# 添加远程仓库（替换 YOUR_USERNAME 为你的 GitHub 用户名）
-git remote add origin https://github.com/YOUR_USERNAME/CodeMetrics.git
+# 添加远程仓库（替换 TbusOS 为你的 GitHub 用户名）
+git remote add origin https://github.com/TbusOS/CodeMetrics.git
 
 # 查看远程仓库
 git remote -v
@@ -92,7 +92,7 @@ git push origin v1.1.0
 - 推送标签后，GitHub Actions 会自动创建 Release
 
 方式二：手动创建
-1. 访问 `https://github.com/YOUR_USERNAME/CodeMetrics/releases`
+1. 访问 `https://github.com/TbusOS/CodeMetrics/releases`
 2. 点击 `Create a new release`
 3. 选择标签 `v1.1.0`
 4. 填写 Release 信息：
@@ -135,8 +135,8 @@ git push origin v1.1.0
 ```bash
 cd /home/zhangbh/cursor-tools/CodeMetrics
 
-# 使用你的 GitHub 用户名替换 YOUR_USERNAME
-sed -i 's/YOUR_USERNAME/你的用户名/g' README.md
+# 使用你的 GitHub 用户名替换 TbusOS
+sed -i 's/TbusOS/你的用户名/g' README.md
 
 git add README.md
 git commit -m "docs: 更新 README 中的 GitHub 链接"
@@ -207,10 +207,10 @@ git push origin v1.2.0
 
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/CodeMetrics.git
+git clone https://github.com/TbusOS/CodeMetrics.git
 
 # 添加远程仓库
-git remote add origin https://github.com/YOUR_USERNAME/CodeMetrics.git
+git remote add origin https://github.com/TbusOS/CodeMetrics.git
 
 # 推送代码
 git push -u origin master

@@ -6,7 +6,7 @@
 
 ### 🐛 报告 Bug
 发现 Bug？请：
-1. 检查 [Issues](https://github.com/YOUR_USERNAME/CodeMetrics/issues) 是否已有相关报告
+1. 检查 [Issues](https://github.com/TbusOS/CodeMetrics/issues) 是否已有相关报告
 2. 如果没有，创建新 Issue，包含：
    - 问题描述
    - 复现步骤
@@ -39,7 +39,7 @@
 
 #### 2. 克隆到本地
 ```bash
-git clone https://github.com/YOUR_USERNAME/CodeMetrics.git
+git clone https://github.com/TbusOS/CodeMetrics.git
 cd CodeMetrics
 ```
 
