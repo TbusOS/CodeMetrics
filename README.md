@@ -1,12 +1,23 @@
 # 📊 CodeMetrics
 
-一个功能丰富的代码度量分析工具，结合了 cloc、tokei、scc 等工具的优点。
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.6+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.1.0-orange.svg)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/CodeMetrics.svg?style=social&label=Star)](https://github.com/YOUR_USERNAME/CodeMetrics)
 
-## ✨ 特性
+**一个功能丰富的代码度量分析工具**
+
+[English](#english) | [中文](#中文)
+
+</div>
+
+---
+
+## 中文
+
+### ✨ 功能特性
 
 - 🌳 **目录树展示** - 直观的树形结构显示
 - 📊 **详细统计** - 代码行/注释行/空行分离统计
@@ -19,204 +30,153 @@
 - ⚙️ **全局配置文件** - 自定义排除规则
 - 🚀 **零依赖** - 纯 Python 标准库实现
 
-## 📦 安装
+### 📦 安装
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/CodeMetrics.git
+git clone https://github.com/YOUR_USERNAME/CodeMetrics.git
 cd CodeMetrics
 
 # 一键安装
-./install.sh
+./scripts/install.sh
 ```
 
-安装脚本会自动：
-- ✅ 检查 Python 版本 (需要 >= 3.6)
-- ✅ 设置执行权限
-- ✅ 创建符号链接到 `~/.local/bin/codemetrics`
-- ✅ 检查并配置 PATH
-
-**卸载：**
-```bash
-./uninstall.sh
-```
-
-## 🚀 快速开始
+### 🚀 快速开始
 
 ```bash
 # 分析驱动代码 (嵌入式项目)
-python codemetrics.py /path/to/driver -p embedded
+codemetrics /path/to/driver -p embedded
 
 # 分析 Web 项目 (中等复杂度)
-python codemetrics.py /path/to/webapp -p semi-detached
+codemetrics /path/to/webapp -p semi-detached
 
 # 分析小工具脚本 (简单项目)
-python codemetrics.py /path/to/scripts -p organic
+codemetrics /path/to/scripts -p organic
 ```
 
-**默认输出包含：**
-- 📂 目录树结构
-- 📊 语言统计表
-- 💰 COCOMO 成本估算
-- 🏥 代码健康度分析
-- 📈 Top 10 最大文件
-
-## 📖 使用示例
-
-### 基本分析
-```bash
-codemetrics /path/to/project -p embedded
-```
-
-### 保存报告
-```bash
-# 保存 JSON/Markdown/HTML 报告到工具目录下的 output 文件夹
-codemetrics /path/to/project -p embedded -s
-
-# 报告位置: codemetrics/output/
-#   - projectname_YYYYMMDD_HHMMSS.json
-#   - projectname_YYYYMMDD_HHMMSS.md
-#   - projectname_YYYYMMDD_HHMMSS.html
-#   - latest.json / latest.md / latest.html
-```
-
-### 显示 Top 20 文件
-```bash
-codemetrics /path/to/project -p embedded -n 20
-```
-
-### 额外排除目录
-```bash
-codemetrics /path/to/project -p embedded -e "test/*,docs/*"
-```
-
-## 📋 命令行参数
-
-运行 `codemetrics` (不带任何参数) 可查看完整帮助信息。
+### 📋 命令行参数
 
 | 参数 | 简写 | 描述 |
 |------|------|------|
 | `path` | - | 要分析的目录路径 (必需) |
 | `--project-type` | `-p` | **必需** COCOMO 项目类型: organic/semi-detached/embedded |
-| `--save` | `-s` | 保存报告到输出目录 (JSON/Markdown/HTML) |
 | `--top N` | `-n N` | Top N 文件数量 (默认: 10) |
 | `--exclude` | `-e` | 额外排除的模式 (逗号分隔) |
 | `--no-color` | - | 禁用颜色输出 |
-| `--version` | `-v` | 显示版本号 |
+| `--no-save` | - | 不保存报告 |
 
-### 项目类型说明
+### 📊 项目类型说明
 
 | 类型 | 描述 | 适用场景 |
 |------|------|----------|
 | **organic** | 简单项目 | 小团队、熟悉的技术栈 |
 | **semi-detached** | 中等项目 | 中型团队、混合经验 |
-| **embedded** | 复杂项目 | 嵌入式、驱动、实时系统、硬件相关 |
+| **embedded** | 复杂项目 | 嵌入式、驱动、实时系统 |
 
-## ⚙️ 配置文件
-
-全局配置文件位于工具目录下：`codemetrics/config.json`
-
-```json
-{
-  "name": "CodeMetrics 全局默认配置",
-  "version": "1.0",
-  "exclude": {
-    "patterns": ["*.md", "*.json", "*.html", "*.txt", "*.o", "*.ko", "*.d"],
-    "dirs": [".git", "node_modules", "__pycache__", "build"]
-  },
-  "cocomo": {
-    "cost_per_month_usd": 5000,
-    "cost_per_month_cny": 30000
-  },
-  "health": {
-    "comment_ratio_min": 0.15,
-    "comment_ratio_max": 0.30,
-    "large_file_threshold": 800
-  }
-}
-```
-
-### 配置说明
-
-| 配置项 | 说明 |
-|--------|------|
-| `exclude.patterns` | 要排除的文件模式 (glob) |
-| `exclude.dirs` | 要排除的目录 |
-| `cocomo.cost_per_month_*` | 人月成本 (影响成本估算) |
-| `health.*` | 健康度指标阈值 |
-
-## 📊 输出示例
-
-### 语言统计表
-```
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                              📊 语言统计                                      ║
-╠════════════════╦═══════╦═════════╦═════════╦══════════╦══════════╦═══════════╣
-║ 语言           ║ 文件  ║ 代码行  ║ 注释行  ║ 空行     ║ 总行数   ║ 大小      ║
-╠════════════════╬═══════╬═════════╬═════════╬══════════╬══════════╬═══════════╣
-║ C              ║    18 ║  12,456 ║   2,134 ║    1,023 ║   15,613 ║   623 KB  ║
-║ C/C++ Header   ║    15 ║   2,890 ║     567 ║      234 ║    3,691 ║   156 KB  ║
-╠════════════════╬═══════╬═════════╬═════════╬══════════╬══════════╬═══════════╣
-║ 总计           ║    33 ║  15,346 ║   2,701 ║    1,257 ║   19,304 ║   779 KB  ║
-╚════════════════╩═══════╩═════════╩═════════╩══════════╩══════════╩═══════════╝
-```
-
-### COCOMO 成本估算
-```
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                           💰 开发成本估算 (COCOMO)                            ║
-╠══════════════════════════════════════════════════════════════════════════════╣
-║ 代码规模: 15.35 KLOC (15,346 行代码)                                         ║
-║ 项目类型: 嵌入式 (embedded)                                                   ║
-╠══════════════════════════════════════════════════════════════════════════════╣
-║ 📅 预估工期:     8.2 个月                                                     ║
-║ 👥 建议团队:     2.4 人                                                       ║
-║ ⏱️  总人月数:    19.8 人月                                                     ║
-╠══════════════════════════════════════════════════════════════════════════════╣
-║ 💵 成本估算 (USD): $99,000                                                    ║
-║ 💴 成本估算 (CNY): ¥594,000                                                   ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-```
-
-## 🧮 COCOMO 模型说明
-
-COCOMO (Constructive Cost Model) 是 Barry Boehm 提出的软件成本估算模型。
-
-### 计算公式
-
-```
-人月 (PM) = a × (KLOC)^b
-工期 (月) = c × (PM)^d
-团队规模 = PM / 工期
-```
-
-## 🏥 健康度指标
-
-| 指标 | 建议值 | 说明 |
-|------|--------|------|
-| 注释率 | 15-30% | 代码可维护性 |
-| 平均文件行数 | 100-500 | 模块化程度 |
-| 大文件 (>800行) | 0 | 建议拆分 |
-| 低注释文件 (<5%) | 0 | 建议添加注释 |
-
-## 🌐 支持的语言
+### 🌐 支持的语言
 
 C, C++, Python, Java, JavaScript, TypeScript, Go, Rust, Ruby, PHP, Swift, Kotlin, Scala, C#, Shell, Perl, Lua, R, SQL, HTML, CSS, SCSS, Vue, React, Markdown, YAML, JSON, XML, Makefile, Dockerfile, 等 50+ 语言。
 
-## 📄 许可证
+### 📖 文档
 
-MIT License
+- 📘 [使用示例](examples/README.md)
+- 📗 [设计文档](docs/DESIGN.md)
+- 📙 [贡献指南](CONTRIBUTING.md)
+- 📕 [更新日志](CHANGELOG.md)
 
-## 🤝 贡献
+### 🤝 参与贡献
 
-欢迎提交 Issue 和 Pull Request!
+欢迎贡献！请查看 [贡献指南](CONTRIBUTING.md) 了解详情。
 
-1. Fork 本仓库
-2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
+### 📄 许可证
 
-## 📮 联系
+MIT License - 详见 [LICENSE](LICENSE) 文件。
 
-如有问题或建议，请提交 Issue。
+---
+
+## English
+
+### ✨ Features
+
+- 🌳 **Directory Tree** - Intuitive tree structure visualization
+- 📊 **Detailed Statistics** - Separate code/comment/blank line counting
+- 🌐 **Multi-language** - Support for 50+ programming languages
+- 💰 **COCOMO Estimation** - Development cost, effort, and schedule estimation
+- 🏥 **Health Analysis** - Comment ratio, large file warnings, etc.
+- 📈 **Top N Analysis** - Ranking of largest and most complex files
+- 🎨 **Multiple Formats** - Terminal/JSON/Markdown/HTML output
+- 📁 **Auto-save Reports** - One-click multi-format report generation
+- ⚙️ **Global Config** - Customizable exclusion rules
+- 🚀 **Zero Dependencies** - Pure Python standard library implementation
+
+### 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/CodeMetrics.git
+cd CodeMetrics
+
+# One-click installation
+./scripts/install.sh
+```
+
+### 🚀 Quick Start
+
+```bash
+# Analyze driver code (embedded project)
+codemetrics /path/to/driver -p embedded
+
+# Analyze web project (medium complexity)
+codemetrics /path/to/webapp -p semi-detached
+
+# Analyze utility scripts (simple project)
+codemetrics /path/to/scripts -p organic
+```
+
+### 📋 Command Line Options
+
+| Option | Short | Description |
+|--------|-------|-------------|
+| `path` | - | Directory path to analyze (required) |
+| `--project-type` | `-p` | **Required** COCOMO project type: organic/semi-detached/embedded |
+| `--top N` | `-n N` | Number of top files to display (default: 10) |
+| `--exclude` | `-e` | Additional patterns to exclude (comma-separated) |
+| `--no-color` | - | Disable colored output |
+| `--no-save` | - | Don't save reports |
+
+### 📊 Project Types
+
+| Type | Description | Use Cases |
+|------|-------------|-----------|
+| **organic** | Simple projects | Small teams, familiar tech stack |
+| **semi-detached** | Medium projects | Medium teams, mixed experience |
+| **embedded** | Complex projects | Embedded, drivers, real-time systems |
+
+### 🌐 Supported Languages
+
+C, C++, Python, Java, JavaScript, TypeScript, Go, Rust, Ruby, PHP, Swift, Kotlin, Scala, C#, Shell, Perl, Lua, R, SQL, HTML, CSS, SCSS, Vue, React, Markdown, YAML, JSON, XML, Makefile, Dockerfile, and 50+ more languages.
+
+### 📖 Documentation
+
+- 📘 [Examples](examples/README.md)
+- 📗 [Design Document](docs/DESIGN.md)
+- 📙 [Contributing Guide](CONTRIBUTING.md)
+- 📕 [Changelog](CHANGELOG.md)
+
+### 🤝 Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+### 📄 License
+
+MIT License - See [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**Made with ❤️ for developers worldwide**
+
+[⭐ Star this project](https://github.com/YOUR_USERNAME/CodeMetrics) if you find it helpful!
+
+</div>
