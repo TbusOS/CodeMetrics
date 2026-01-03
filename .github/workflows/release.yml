@@ -1,0 +1,54 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # 当推送 v1.0.0 这样的标签时触发
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v3
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 📊 Generate Release Report
+      run: |
+        chmod +x codemetrics.py
+        python3 codemetrics.py . -p organic
+        mv codemetrics_output release-artifacts || true
+    
+    - name: 📝 Extract Release Notes
+      id: extract_notes
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+    
+    - name: 🎉 Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: Release ${{ steps.extract_notes.outputs.version }}
+        body_path: docs/RELEASE_NOTES.md
+        files: |
+          codemetrics.py
+          config.json
+          LICENSE
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 📤 Upload Analysis Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-report-${{ steps.extract_notes.outputs.version }}
+        path: release-artifacts/
+        if-no-files-found: ignore
+
