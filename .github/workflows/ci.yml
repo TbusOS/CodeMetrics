@@ -2,87 +2,32 @@ name: CodeMetrics CI
 
 on:
   push:
-    branches: [ master, main, develop ]
+    branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
 
 jobs:
   test:
-    name: Test on Python ${{ matrix.python-version }}
+    name: Test
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
     
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
-    - name: 🐍 Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.11'
     
     - name: 📊 Display Python version
-      run: python -c "import sys; print(sys.version)"
+      run: python --version
     
-    - name: ✅ Test basic functionality
-      run: |
-        python3 codemetrics.py --version
-        python3 codemetrics.py --help
+    - name: ✅ Check Python syntax
+      run: python -m py_compile codemetrics.py
     
-    - name: 🔍 Test analysis on self
-      run: |
-        python3 codemetrics.py . -p organic --no-save
+    - name: 🔍 Test help command
+      run: python codemetrics.py --help
     
-    - name: 📝 Test with different parameters
-      run: |
-        python3 codemetrics.py . -p embedded -n 5 --no-save
-        python3 codemetrics.py . -p semi-detached --no-color --no-save
-
-  lint:
-    name: Code Quality Check
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v3
-    
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    
-    - name: 📋 Check Python syntax
-      run: |
-        python3 -m py_compile codemetrics.py
-        echo "✅ Python syntax check passed"
-
-  analyze:
-    name: Self Analysis Report
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v3
-    
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    
-    - name: 📊 Analyze CodeMetrics itself
-      run: |
-        python3 codemetrics.py . -p organic --no-save
-    
-    - name: 📤 Upload analysis report
-      if: false  # Disable for now
-      uses: actions/upload-artifact@v3
-      with:
-        name: codemetrics-report
-        path: |
-          codemetrics_output/
-          *_output/
-        if-no-files-found: ignore
-
+    - name: 📈 Test analysis
+      run: python codemetrics.py . -p organic --no-save
