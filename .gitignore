@@ -1,0 +1,31 @@
+# CodeMetrics 输出目录
+output/
+*_output/
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# 临时文件
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+
+# 编辑器
+.vscode/
+.idea/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+.directory
+
+# 测试
+test_output/
+
