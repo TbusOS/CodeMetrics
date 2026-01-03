@@ -29,7 +29,6 @@ jobs:
     
     - name: ✅ Test basic functionality
       run: |
-        chmod +x codemetrics.py
         python3 codemetrics.py --version
         python3 codemetrics.py --help
     
@@ -75,10 +74,10 @@ jobs:
     
     - name: 📊 Analyze CodeMetrics itself
       run: |
-        chmod +x codemetrics.py
-        python3 codemetrics.py . -p organic
+        python3 codemetrics.py . -p organic --no-save
     
     - name: 📤 Upload analysis report
+      if: false  # Disable for now
       uses: actions/upload-artifact@v3
       with:
         name: codemetrics-report
