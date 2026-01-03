@@ -7,96 +7,15 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub stars](https://img.shields.io/github/stars/TbusOS/CodeMetrics.svg?style=social&label=Star)](https://github.com/TbusOS/CodeMetrics)
 
-**一个功能丰富的代码度量分析工具**
+**A Powerful Code Metrics and Analysis Tool**
 
-[English](#english) | [中文](#中文)
+[English](README.md) | [中文](README_zh.md)
 
 </div>
 
 ---
 
-## 中文
-
-### ✨ 功能特性
-
-- 🌳 **目录树展示** - 直观的树形结构显示
-- 📊 **详细统计** - 代码行/注释行/空行分离统计
-- 🌐 **多语言支持** - 支持 50+ 编程语言
-- 💰 **COCOMO 估算** - 开发成本、人月、工期估算
-- 🏥 **健康度分析** - 注释率、大文件警告等
-- 📈 **Top N 分析** - 最大文件、代码最多文件排行
-- 🎨 **多输出格式** - Terminal/JSON/Markdown/HTML
-- 📁 **自动保存报告** - 一键生成多格式报告
-- ⚙️ **全局配置文件** - 自定义排除规则
-- 🚀 **零依赖** - 纯 Python 标准库实现
-
-### 📦 安装
-
-```bash
-# 克隆仓库
-git clone https://github.com/TbusOS/CodeMetrics.git
-cd CodeMetrics
-
-# 一键安装
-./scripts/install.sh
-```
-
-### 🚀 快速开始
-
-```bash
-# 分析驱动代码 (嵌入式项目)
-codemetrics /path/to/driver -p embedded
-
-# 分析 Web 项目 (中等复杂度)
-codemetrics /path/to/webapp -p semi-detached
-
-# 分析小工具脚本 (简单项目)
-codemetrics /path/to/scripts -p organic
-```
-
-### 📋 命令行参数
-
-| 参数 | 简写 | 描述 |
-|------|------|------|
-| `path` | - | 要分析的目录路径 (必需) |
-| `--project-type` | `-p` | **必需** COCOMO 项目类型: organic/semi-detached/embedded |
-| `--top N` | `-n N` | Top N 文件数量 (默认: 10) |
-| `--exclude` | `-e` | 额外排除的模式 (逗号分隔) |
-| `--no-color` | - | 禁用颜色输出 |
-| `--no-save` | - | 不保存报告 |
-
-### 📊 项目类型说明
-
-| 类型 | 描述 | 适用场景 |
-|------|------|----------|
-| **organic** | 简单项目 | 小团队、熟悉的技术栈 |
-| **semi-detached** | 中等项目 | 中型团队、混合经验 |
-| **embedded** | 复杂项目 | 嵌入式、驱动、实时系统 |
-
-### 🌐 支持的语言
-
-C, C++, Python, Java, JavaScript, TypeScript, Go, Rust, Ruby, PHP, Swift, Kotlin, Scala, C#, Shell, Perl, Lua, R, SQL, HTML, CSS, SCSS, Vue, React, Markdown, YAML, JSON, XML, Makefile, Dockerfile, 等 50+ 语言。
-
-### 📖 文档
-
-- 📘 [使用示例](examples/README.md)
-- 📗 [设计文档](docs/DESIGN.md)
-- 📙 [贡献指南](CONTRIBUTING.md)
-- 📕 [更新日志](CHANGELOG.md)
-
-### 🤝 参与贡献
-
-欢迎贡献！请查看 [贡献指南](CONTRIBUTING.md) 了解详情。
-
-### 📄 许可证
-
-MIT License - 详见 [LICENSE](LICENSE) 文件。
-
----
-
-## English
-
-### ✨ Features
+## ✨ Features
 
 - 🌳 **Directory Tree** - Intuitive tree structure visualization
 - 📊 **Detailed Statistics** - Separate code/comment/blank line counting
@@ -109,7 +28,7 @@ MIT License - 详见 [LICENSE](LICENSE) 文件。
 - ⚙️ **Global Config** - Customizable exclusion rules
 - 🚀 **Zero Dependencies** - Pure Python standard library implementation
 
-### 📦 Installation
+## 📦 Installation
 
 ```bash
 # Clone the repository
@@ -120,10 +39,16 @@ cd CodeMetrics
 ./scripts/install.sh
 ```
 
-### 🚀 Quick Start
+The installation script will automatically:
+- ✅ Check Python version (requires >= 3.6)
+- ✅ Set executable permissions
+- ✅ Create symbolic link to `~/.local/bin/codemetrics`
+- ✅ Check and configure PATH
+
+## 🚀 Quick Start
 
 ```bash
-# Analyze driver code (embedded project)
+# Analyze embedded project (driver code)
 codemetrics /path/to/driver -p embedded
 
 # Analyze web project (medium complexity)
@@ -133,7 +58,14 @@ codemetrics /path/to/webapp -p semi-detached
 codemetrics /path/to/scripts -p organic
 ```
 
-### 📋 Command Line Options
+**Default output includes:**
+- 📂 Directory tree structure
+- 📊 Language statistics table
+- 💰 COCOMO cost estimation
+- 🏥 Code health analysis
+- 📈 Top 10 largest files
+
+## 📋 Command Line Options
 
 | Option | Short | Description |
 |--------|-------|-------------|
@@ -144,32 +76,191 @@ codemetrics /path/to/scripts -p organic
 | `--no-color` | - | Disable colored output |
 | `--no-save` | - | Don't save reports |
 
-### 📊 Project Types
+## 📊 Project Types
 
 | Type | Description | Use Cases |
 |------|-------------|-----------|
 | **organic** | Simple projects | Small teams, familiar tech stack |
 | **semi-detached** | Medium projects | Medium teams, mixed experience |
-| **embedded** | Complex projects | Embedded, drivers, real-time systems |
+| **embedded** | Complex projects | Embedded systems, drivers, real-time systems, hardware-related |
 
-### 🌐 Supported Languages
+## 📖 Usage Examples
 
-C, C++, Python, Java, JavaScript, TypeScript, Go, Rust, Ruby, PHP, Swift, Kotlin, Scala, C#, Shell, Perl, Lua, R, SQL, HTML, CSS, SCSS, Vue, React, Markdown, YAML, JSON, XML, Makefile, Dockerfile, and 50+ more languages.
+### Basic Analysis
+```bash
+codemetrics /path/to/project -p embedded
+```
 
-### 📖 Documentation
+### Save Reports
+```bash
+# Automatically save JSON/Markdown/HTML reports
+codemetrics /path/to/project -p embedded
+# Reports saved in the output folder of the tool directory
+```
 
-- 📘 [Examples](examples/README.md)
-- 📗 [Design Document](docs/DESIGN.md)
-- 📙 [Contributing Guide](CONTRIBUTING.md)
-- 📕 [Changelog](CHANGELOG.md)
+### Show Top 20 Files
+```bash
+codemetrics /path/to/project -p embedded -n 20
+```
 
-### 🤝 Contributing
+### Exclude Additional Directories
+```bash
+codemetrics /path/to/project -p embedded -e "test/*,docs/*"
+```
+
+## 📊 Output Formats
+
+CodeMetrics automatically generates reports in multiple formats:
+
+### 1. Terminal Output (Default)
+- Colored tree structure
+- Formatted statistics tables
+- Real-time progress display
+
+### 2. JSON Format
+```bash
+# Location: output/report_YYYYMMDD_HHMMSS.json
+```
+Suitable for program parsing, CI/CD integration, data analysis
+
+### 3. Markdown Format
+```bash
+# Location: output/report_YYYYMMDD_HHMMSS.md
+```
+Suitable for documentation generation, GitHub/GitLab display
+
+### 4. HTML Format
+```bash
+# Location: output/report_YYYYMMDD_HHMMSS.html
+```
+Suitable for browser viewing, team sharing, presentation demos
+
+## 🌐 Supported Languages
+
+**System Programming**: C, C++, Rust, Go, Assembly
+
+**Scripting Languages**: Python, Ruby, Perl, Shell, Bash, Lua
+
+**Web Frontend**: JavaScript, TypeScript, React JSX, React TSX, HTML, CSS, SCSS, Vue
+
+**JVM Languages**: Java, Kotlin, Scala, Groovy
+
+**.NET Platform**: C#, F#
+
+**Configuration**: JSON, YAML, TOML, XML, INI
+
+**Documentation**: Markdown, reStructuredText
+
+**Others**: SQL, Dockerfile, Makefile, CMake
+
+And 50+ more programming languages.
+
+## ⚙️ Configuration
+
+Global configuration file located in tool directory: `config.json`
+
+```json
+{
+  "name": "CodeMetrics Global Configuration",
+  "exclude": {
+    "patterns": ["*.md", "*.json", "*.o", "*.ko"],
+    "dirs": [".git", "node_modules", "__pycache__", "build"]
+  },
+  "cocomo": {
+    "cost_per_month_usd": 5000,
+    "cost_per_month_cny": 30000
+  },
+  "health": {
+    "comment_ratio_min": 0.15,
+    "comment_ratio_max": 0.30,
+    "large_file_threshold": 800
+  }
+}
+```
+
+## 🧮 COCOMO Model
+
+COCOMO (Constructive Cost Model) is a software cost estimation model proposed by Barry Boehm.
+
+### Calculation Formula
+
+```
+Person-Months (PM) = a × (KLOC)^b
+Duration (months) = c × (PM)^d
+Team Size = PM / Duration
+```
+
+### Model Parameters
+
+| Type | a | b | c | d | Use Case |
+|------|---|---|---|---|----------|
+| organic | 2.4 | 1.05 | 2.5 | 0.38 | Simple projects |
+| semi-detached | 3.0 | 1.12 | 2.5 | 0.35 | Medium projects |
+| embedded | 3.6 | 1.20 | 2.5 | 0.32 | Complex projects |
+
+## 🏥 Health Metrics
+
+| Metric | Recommended Value | Description |
+|--------|-------------------|-------------|
+| Comment Ratio | 15-30% | Code maintainability |
+| Average File Lines | 100-500 | Modularity level |
+| Large Files (>800 lines) | 0 | Should be split |
+| Low Comment Files (<5%) | 0 | Should add comments |
+
+## 📖 Documentation
+
+- 📘 [Examples](examples/README.md) - Detailed usage scenarios and examples
+- 📗 [Design Document](docs/DESIGN.md) - Project architecture and design
+- 📙 [Contributing Guide](CONTRIBUTING.md) - How to contribute
+- 📕 [Changelog](CHANGELOG.md) - Version history and updates
+- 📖 [COCOMO Model](docs/COCOMO.md) - Cost estimation model details
+
+## 🎯 Use Cases
+
+- 📱 **Embedded Development** - Linux kernel drivers, firmware development, real-time systems
+- 🌐 **Web Development** - React/Vue frontend, Node.js/Django/Flask backend
+- 🔧 **Utility Scripts** - Shell scripts, Python automation tools, DevOps scripts
+- 📚 **Project Assessment** - Code review, cost estimation, technical debt analysis
+- 🎓 **Education & Research** - Code metrics research, software engineering courses
+
+## 🤝 Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-### 📄 License
+### Ways to Contribute
+
+- 🐛 Report bugs and issues
+- 💡 Suggest new features
+- 📖 Improve documentation
+- 🔧 Submit Pull Requests
+- 🌍 Add translations to other languages
+
+## ❓ FAQ
+
+### Q: Do I need to install additional Python packages?
+A: No! CodeMetrics is implemented using pure Python standard library with zero dependencies.
+
+### Q: Does it support Windows?
+A: Primarily targeted at Linux/macOS. Windows users need to use WSL or Git Bash.
+
+### Q: How to uninstall?
+A: Run `./scripts/uninstall.sh`.
+
+### Q: Where are the output reports saved?
+A: By default, saved in the `<project_name>_output/` directory within the tool directory.
+
+### Q: Can I customize COCOMO parameters?
+A: Yes! Edit the `cocomo` section in the `config.json` file.
+
+## 📄 License
 
 MIT License - See [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/TbusOS/CodeMetrics)
+- [Issue Tracker](https://github.com/TbusOS/CodeMetrics/issues)
+- [Pull Requests](https://github.com/TbusOS/CodeMetrics/pulls)
 
 ---
 
